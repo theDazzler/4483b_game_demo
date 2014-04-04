@@ -1,4 +1,4 @@
-﻿		using UnityEngine;
+		using UnityEngine;
 		using System.Collections;
 
 		public class GameController : MonoBehaviour 
@@ -12,11 +12,23 @@
 			public bool isPaused = false;
 			public GUISkin pauseBack;
 
+	//good foods 
+	public GameObject apple;
+	public GameObject brussel;
+	public GameObject roastChicken;
+	public GameObject water;
+	
+	//bad foods
+	public GameObject cottonCandy;
+	public GameObject donut;
+	public GameObject friedChicken;
+	public GameObject cake;
+	public GameObject chips;
+
 
 			// Use this for initialization
 			void Start () 
 			{
-				Time.timeScale = 1;
 				StartCoroutine(spawnFood());
 			}
 			
@@ -80,16 +92,52 @@
 			}
 
 			//spawn food using timer
-			IEnumerator spawnFood()
-			{
-				yield return new WaitForSeconds(levelWait);
-
-				for (int i = 0; i < foodCount; i++)
-				{
-					Vector2 spawnPosition = new Vector2 (Random.Range (spawnRangeX.x, spawnRangeX.y), Random.Range (spawnRangeY.x, spawnRangeY.y));
-					Quaternion spawnRotation = Quaternion.identity;
-					Instantiate(food, spawnPosition, spawnRotation);
-					yield return new WaitForSeconds(spawnDelay);
-				}
+	//spawn food using timer
+	IEnumerator spawnFood()
+	{
+		yield return new WaitForSeconds(levelWait);
+		float rand;
+		//for (int i = 0; i < foodCount; i++)
+		while (true)
+		{
+			Vector2 spawnPosition = new Vector2 (Random.Range (spawnRangeX.x, spawnRangeX.y), Random.Range (spawnRangeY.x, spawnRangeY.y));
+			Quaternion spawnRotation = Quaternion.identity;
+			rand = Random.Range(0.0f, 100.0f);
+			if (rand < 10){
+				Instantiate(apple, spawnPosition, spawnRotation);
+			}
+			else if(rand < 20){
+				Instantiate(brussel, spawnPosition, spawnRotation);
+			}
+			else if(rand < 30){
+				Instantiate(roastChicken, spawnPosition, spawnRotation);
+			}
+			else if(rand < 40){
+				Instantiate(water, spawnPosition, spawnRotation);
+			}
+			else if(rand < 50){
+				Instantiate(cottonCandy, spawnPosition, spawnRotation);
+			}
+			else if(rand < 60){
+				Instantiate(donut, spawnPosition, spawnRotation);
+			}
+			else if(rand < 70){
+				Instantiate(friedChicken, spawnPosition, spawnRotation);
+			}
+			else if(rand < 80){
+				Instantiate(cake, spawnPosition, spawnRotation);
+			}
+			else if(rand < 90){
+				Instantiate(chips, spawnPosition, spawnRotation);
+			}
+			else{
+				Instantiate(apple, spawnPosition, spawnRotation);
+			}
+			spawnDelay -= 0.01f;
+			if (spawnDelay < 0.1f ){
+				spawnDelay = 0.1f ;
+			}
+			yield return new WaitForSeconds(spawnDelay);
 			}
 		}
+}

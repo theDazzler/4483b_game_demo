@@ -14,17 +14,30 @@ public class PlayerController : MonoBehaviour
 	public LevelBounds levelBounds;
 
 	public GUIText scoreLabel;
+	public GUIText liveLabel;
+
+	private float doomTimer = 15;
 	
 	// Use this for initialization
 	void Start () 
 	{
 		scoreLabel.text = "Score: " + GlobalFlags.getScore();
+		drawHearts();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		scoreLabel.text = "Score: " + GlobalFlags.getScore();
+		scoreLabel.text = "" + GlobalFlags.getScore();
+		if (GlobalFlags.getScore() < 0){
+			doomTimer -= Time.deltaTime;
+			if (doomTimer < 0){
+				loseALife();
+			}
+		}
+		else {
+			doomTimer = 15;
+		}
 	}
 
 	//physics
@@ -46,7 +59,10 @@ public class PlayerController : MonoBehaviour
 		{
 			FoodController f = other.GetComponent<FoodController>();
 			GlobalFlags.incrementScore(f.getValueCaught());
-			Debug.Log("Score: " + GlobalFlags.getScore());
+			//Debug.Log("Score: " + GlobalFlags.getScore());
+			if (f.isDeadly()){
+				loseALife();
+			}
 			Destroy(other.gameObject);
 		}
 		/*
@@ -54,5 +70,19 @@ public class PlayerController : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}*/
+	}
+
+	void drawHearts(){
+		liveLabel.text = "";
+		for (int i = 0; i < GlobalFlags.getLives(); i++){
+			liveLabel.text = liveLabel.text + "♥";
+		}
+	}
+
+	void loseALife(){
+		GlobalFlags.loseLife();
+		GlobalFlags.setScore(0);
+		doomTimer = 15;
+		drawHearts();
 	}
 }

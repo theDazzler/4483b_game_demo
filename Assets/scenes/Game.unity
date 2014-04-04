@@ -158,6 +158,7 @@ MonoBehaviour:
     xMin: -4.69999981
     xMax: 4.69999981
   scoreLabel: {fileID: 336774247}
+  liveLabel: {fileID: 1281380468}
 --- !u!61 &117088044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -194,7 +195,7 @@ GUIText:
   m_Enabled: 1
   serializedVersion: 3
   m_Text: Gui Text
-  m_Anchor: 0
+  m_Anchor: 2
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
@@ -215,7 +216,57 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 336774246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .347787142, y: .982007027, z: 0}
+  m_LocalPosition: {x: .652212262, y: .982007027, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!1 &1281380467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1281380469}
+  - 132: {fileID: 1281380468}
+  m_Layer: 0
+  m_Name: liveText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!132 &1281380468
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1281380467}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: Gui Text
+  m_Anchor: 2
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 35
+  m_FontStyle: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4283124694
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &1281380469
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1281380467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .652212262, y: .905900955, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -262,10 +313,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRangeX: {x: -4.69999981, y: 4.69999981}
   spawnRangeY: {x: 6, y: 6}
-  food: {fileID: 100000, guid: d935044d26d4cbf449d4294af611194d, type: 2}
   foodCount: 25
-  spawnDelay: 1
+  spawnDelay: 2
   levelWait: 5
+  apple: {fileID: 100000, guid: d935044d26d4cbf449d4294af611194d, type: 2}
+  brussel: {fileID: 100000, guid: 8c9ee3fb1abae49c1b5c70b6f7928933, type: 2}
+  roastChicken: {fileID: 100000, guid: cfbefb9f7164f48e4845d6c52d42b922, type: 2}
+  water: {fileID: 100000, guid: 5f5c03b981e8d43fca871b208d7bbd58, type: 2}
+  cottonCandy: {fileID: 100000, guid: ec952179af52744bc95e1d9cdc4bd766, type: 2}
+  donut: {fileID: 100000, guid: 3ab85d3e8d32c4edaba4fdf5cdd084a4, type: 2}
+  friedChicken: {fileID: 100000, guid: 2fe3c35e27fe247ff913dc5d3356511e, type: 2}
+  cake: {fileID: 100000, guid: 21cd9c239090b43c9adf1d8e0f22a1a6, type: 2}
+  chips: {fileID: 100000, guid: 2ce9d45543f274414957d6fcbe488b7d, type: 2}
 --- !u!1 &1426247558
 GameObject:
   m_ObjectHideFlags: 0
