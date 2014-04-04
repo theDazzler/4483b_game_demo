@@ -9,6 +9,8 @@ public class FoodController : MonoBehaviour
 
 	public int pointValueMissed;
 
+	public bool deadly;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -24,6 +26,14 @@ public class FoodController : MonoBehaviour
 		Vector2 verticalMovement = new Vector2 (0.0f, -speed);
 		rigidbody2D.velocity = verticalMovement;
 
+	}
+
+	public bool isDeadly(){
+		return deadly;
+	}
+
+	public void setDeadly(bool d){
+		deadly = d;
 	}
 
 	public int getValueCaught(){

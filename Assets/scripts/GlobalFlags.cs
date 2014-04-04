@@ -4,7 +4,7 @@ using System.Collections;
 public class GlobalFlags : MonoBehaviour {
 
 	private static int score = 0; //the player's score in a single game
-	private static int lives = 3;
+	private static int lives = 3; //the player's lives
 
 	//set the players score
 	public static void setScore(int s){
@@ -26,14 +26,20 @@ public class GlobalFlags : MonoBehaviour {
 		return score;
 	}
 
+	//sets the number of lives
 	public static void setLives (int l){
 		lives = l;
 	}
 
-	public static void loseLive(){
+	//removes 1 from the player's total lives
+	public static void loseLife(){
 		lives--;
+		if (lives < 0){
+			lives = 0;
+		}
 	}
 
+	//returns the number of lives
 	public static int getLives(){
 		return lives;
 	}
