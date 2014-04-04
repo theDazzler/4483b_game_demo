@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 	void Update () 
 	{
 		if (Input.GetKeyDown ("space") || Input.GetKeyDown ("p")) {
-			Application.LoadLevel(5);
+			Application.LoadLevel(6);
 		}
 
 	}
