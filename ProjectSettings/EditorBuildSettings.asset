@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/scenes/Game.unity
   - enabled: 1
     path: Assets/scenes/mainMenu/submenues/options/options.unity
+  - enabled: 1
+    path: Assets/scenes/mainMenu/mainMenu.unity

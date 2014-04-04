@@ -9,8 +9,8 @@ public class options : MonoBehaviour {
 		GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), backgroundTexture);
 		
 		//displays our buttons
-		if(GUI.Button(buttonRect(1), "Play Game")) {
-			Application.LoadLevel(1);
+		if(GUI.Button(buttonRect(1), "Back to main menu")) {
+			Application.LoadLevel(2);
 		}
 	}
 	
