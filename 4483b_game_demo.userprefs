@@ -2,8 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scenes\mainMenu\scripts\MainMenu.cs">
     <Files>
-      <File FileName="Assets\scenes\mainMenu\scripts\MainMenu.cs" Line="22" Column="32" />
-      <File FileName="Assets\scenes\mainMenu\submenues\options\scripts\options.cs" Line="13" Column="27" />
+      <File FileName="Assets\scenes\mainMenu\scripts\MainMenu.cs" Line="22" Column="27" />
+      <File FileName="Assets\scenes\mainMenu\submenues\options\scripts\options.cs" Line="11" Column="20" />
+      <File FileName="Assets\scenes\mainMenu\submenues\highscores\scripts\highscores.cs" Line="27" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
