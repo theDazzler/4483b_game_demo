@@ -11,7 +11,7 @@ public class help : MonoBehaviour {
 		
 		//displays our buttons
 		if(GUI.Button(buttonRect(1), "Back to main menu")) {
-			Application.LoadLevel(2);
+			Application.LoadLevel(0);
 		}
 	}
 	

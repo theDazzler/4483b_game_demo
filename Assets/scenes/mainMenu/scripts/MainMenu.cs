@@ -11,11 +11,11 @@ public class MainMenu : MonoBehaviour {
 
 		//displays our buttons
 		if(GUI.Button(buttonRect(1), "Play Game")) {
-			Application.LoadLevel(0);
+			Application.LoadLevel(1);
 		}
 
 		if(GUI.Button(buttonRect(2), "Options")) {
-			Application.LoadLevel(1);
+			Application.LoadLevel(2);
 		}
 		
 		if(GUI.Button(buttonRect(3), "Highscores")) {
