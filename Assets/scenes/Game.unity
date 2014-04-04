@@ -157,6 +157,7 @@ MonoBehaviour:
   levelBounds:
     xMin: -4.69999981
     xMax: 4.69999981
+  scoreLabel: {fileID: 336774247}
 --- !u!61 &117088044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -168,6 +169,56 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: .639999986, y: .639999986}
   m_Center: {x: 0, y: 0}
+--- !u!1 &336774246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 336774248}
+  - 132: {fileID: 336774247}
+  m_Layer: 0
+  m_Name: ScoreText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!132 &336774247
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 336774246}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: Gui Text
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 35
+  m_FontStyle: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4283124694
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &336774248
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 336774246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .347787142, y: .982007027, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1310025470
 GameObject:
   m_ObjectHideFlags: 0

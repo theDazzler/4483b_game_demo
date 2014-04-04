@@ -5,7 +5,9 @@ public class FoodController : MonoBehaviour
 {
 	public float speed;
 
-	public int pointValue;
+	public int pointValueCaught;
+
+	public int pointValueMissed;
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +26,12 @@ public class FoodController : MonoBehaviour
 
 	}
 
-	public int getValue(){
-		return pointValue;
+	public int getValueCaught(){
+		return pointValueCaught;
+	}
+
+	public int getValueMissed(){
+		return pointValueMissed;
 	}
 
 }

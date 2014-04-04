@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 		if (other.tag == "Food")
 		{
 			FoodController f = other.GetComponent<FoodController>();
-			GlobalFlags.incrementScore(f.getValue());
+			GlobalFlags.incrementScore(f.getValueCaught());
 			Debug.Log("Score: " + GlobalFlags.getScore());
 			Destroy(other.gameObject);
 		}
