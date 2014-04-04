@@ -15,9 +15,9 @@ public class GlobalFlags : MonoBehaviour {
 	//if score is less then 0, set it to 0. There shouldn't be a negative score.
 	public static void incrementScore(int add){
 		score += add;
-		if (score < 0){
+		/*if (score < 0){
 			score = 0;
-		}
+		}*/
 	}
 
 	//retreive the player's score

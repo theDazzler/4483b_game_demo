@@ -77,7 +77,10 @@ public class GameController : MonoBehaviour
 			else{
 				Instantiate(apple, spawnPosition, spawnRotation);
 			}
-
+			spawnDelay -= 0.01f;
+			if (spawnDelay < 0 ){
+				spawnDelay = 0 ;
+			}
 			yield return new WaitForSeconds(spawnDelay);
 		}
 	}
