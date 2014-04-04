@@ -10,39 +10,28 @@ public class MainMenu : MonoBehaviour {
 		GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), backgroundTexture);
 
 		//displays our buttons
-		if(GUI.Button(buttonRect(1), "Play Game")) {
+		if(GUI.Button(GlobalFlags.itemRect(1), "Play Game")) {
 			Application.LoadLevel(1);
 		}
 
-		if(GUI.Button(buttonRect(2), "Options")) {
+		if(GUI.Button(GlobalFlags.itemRect(2), "Options")) {
 			Application.LoadLevel(2);
 		}
 		
-		if(GUI.Button(buttonRect(3), "Highscores")) {
+		if(GUI.Button(GlobalFlags.itemRect(3), "Highscores")) {
 			Application.LoadLevel(3);
 		}
 		
-		if(GUI.Button(buttonRect(4), "Help")) {
+		if(GUI.Button(GlobalFlags.itemRect(4), "Help")) {
 			Application.LoadLevel(4);
 		}
 		
-		if(GUI.Button(buttonRect(5), "Exit")) {
+		if(GUI.Button(GlobalFlags.itemRect(5), "Exit")) {
 			Application.Quit();
 		}
 
-		if(GUI.Button(buttonRect(6), "Facebook")) {
+		if(GUI.Button(GlobalFlags.itemRect(6), "Facebook")) {
 			Application.LoadLevel(5);
 		}
-	}
-
-	Rect buttonRect(int buttonNumber){
-		return new Rect(Screen.width * 0.25f, top(buttonNumber), Screen.width * 0.5f, Screen.height * 0.1f);
-	}
-
-	float top(int buttonNumber){
-		float buttonPlacementY = 0.2f;
-		float buttonOffsetY = 0.125f;
-
-		return Screen.height * (buttonPlacementY + buttonOffsetY * buttonNumber);
 	}
 }
