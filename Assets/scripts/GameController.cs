@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
 			}
 			spawnDelay -= 0.01f;
 			if (spawnDelay < 0.1 ){
-				spawnDelay = 0.1 ;
+				spawnDelay = 0.1f;
 			}
 			yield return new WaitForSeconds(spawnDelay);
 		}
