@@ -20,7 +20,10 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		if (Input.GetKeyDown ("space") || Input.GetKeyDown ("p")) {
+			Application.LoadLevel(5);
+		}
+
 	}
 
 	//spawn food using timer

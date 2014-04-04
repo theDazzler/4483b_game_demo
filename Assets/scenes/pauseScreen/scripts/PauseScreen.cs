@@ -10,19 +10,24 @@ public class PauseScreen : MonoBehaviour {
 		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
 
 		//Display buttons
-		if(GUI.Button(buttonRect(1), "Options")) {
-		}
-		
-		if(GUI.Button(buttonRect(2), "High Scores")) {
 
+		if(GUI.Button (buttonRect (1), "Resume")){
+			Application.LoadLevel(1);
+		}
+		if(GUI.Button(buttonRect(2), "Options")) {
+			Application.LoadLevel(2);
 		}
 		
-		if(GUI.Button(buttonRect(3), "Help")) {
-		
+		if(GUI.Button(buttonRect(3), "High Scores")) {
+			Application.LoadLevel (3);
 		}
 		
-		if(GUI.Button(buttonRect(4), "Exit")) {
+		if(GUI.Button(buttonRect(4), "Help")) {
+			Application.LoadLevel (4);
+		}
 		
+		if(GUI.Button(buttonRect(5), "Exit")) {
+			Application.LoadLevel (0);
 		}
 		
 
