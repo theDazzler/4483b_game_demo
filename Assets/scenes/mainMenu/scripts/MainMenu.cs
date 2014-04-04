@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		if(GUI.Button(buttonRect(2), "Options")) {
-			print("Clicked options");
+			Application.LoadLevel(2);
 		}
 		
 		if(GUI.Button(buttonRect(3), "Highscores")) {
