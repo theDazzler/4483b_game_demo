@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 41a5aa27ff926e4459d0e7a4806b4ab0
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - food: {instanceID: 0}
+  - pauseBack: {fileID: 2800000, guid: 21a6193f9cc5e07468e2048cd3011596, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
