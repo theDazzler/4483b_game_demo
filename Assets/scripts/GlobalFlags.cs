@@ -4,6 +4,7 @@ using System.Collections;
 public class GlobalFlags : MonoBehaviour {
 
 	private static int score = 0; //the player's score in a single game
+	private static int lives = 3;
 
 	//set the players score
 	public static void setScore(int s){
@@ -23,6 +24,18 @@ public class GlobalFlags : MonoBehaviour {
 	//retreive the player's score
 	public static int getScore(){
 		return score;
+	}
+
+	public static void setLives (int l){
+		lives = l;
+	}
+
+	public static void loseLive(){
+		lives--;
+	}
+
+	public static int getLives(){
+		return lives;
 	}
 
 	//Main Menu utils

@@ -14,17 +14,22 @@ public class PlayerController : MonoBehaviour
 	public LevelBounds levelBounds;
 
 	public GUIText scoreLabel;
+	public GUIText liveLabel;
 	
 	// Use this for initialization
 	void Start () 
 	{
 		scoreLabel.text = "Score: " + GlobalFlags.getScore();
+		liveLabel.text = "";
+		for (int i = 0; i < GlobalFlags.getLives(); i++){
+			liveLabel.text = liveLabel.text + "♥";
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		scoreLabel.text = "Score: " + GlobalFlags.getScore();
+		scoreLabel.text = "" + GlobalFlags.getScore();
 	}
 
 	//physics
