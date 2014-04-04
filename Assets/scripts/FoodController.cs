@@ -5,6 +5,8 @@ public class FoodController : MonoBehaviour
 {
 	public float speed;
 
+	public int pointValue;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -22,5 +24,8 @@ public class FoodController : MonoBehaviour
 
 	}
 
+	public int getValue(){
+		return pointValue;
+	}
 
 }

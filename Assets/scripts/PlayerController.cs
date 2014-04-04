@@ -12,17 +12,19 @@ public class PlayerController : MonoBehaviour
 {
 	public float speed;
 	public LevelBounds levelBounds;
+
+	public GUIText scoreLabel;
 	
 	// Use this for initialization
 	void Start () 
 	{
-
+		scoreLabel.text = "Score: " + GlobalFlags.getScore();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-
+		scoreLabel.text = "Score: " + GlobalFlags.getScore();
 	}
 
 	//physics
@@ -42,6 +44,9 @@ public class PlayerController : MonoBehaviour
 	{
 		if (other.tag == "Food")
 		{
+			FoodController f = other.GetComponent<FoodController>();
+			GlobalFlags.incrementScore(f.getValue());
+			Debug.Log("Score: " + GlobalFlags.getScore());
 			Destroy(other.gameObject);
 		}
 		/*
