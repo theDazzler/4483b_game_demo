@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/scenes/mainMenu/submenues/highscores/highscores.unity
   - enabled: 1
     path: Assets/scenes/mainMenu/submenues/help/help.unity
+  - enabled: 1
+    path: Assets/scenes/mainMenu/submenues/facebook/facebook.unity

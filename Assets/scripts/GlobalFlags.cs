@@ -25,4 +25,22 @@ public class GlobalFlags : MonoBehaviour {
 		return score;
 	}
 
+	//Main Menu utils
+	//itemRect - used to return a positioned rectangle (for a menu button) based on menu item number
+	//use itemRect(itemNumber) for default starting position
+	//use itemRect(int itemNumber, float startingPlacement, float startingOffset) for custom
+	public static Rect itemRect(int itemNumber){
+		return itemRect(itemNumber, -1, -1);
+	}
+	public static Rect itemRect(int itemNumber, float startingPlacement, float startingOffset){
+		return new Rect(Screen.width * 0.25f, top(
+					itemNumber
+				, 	startingPlacement==-1 ? 0.2f : startingPlacement
+				,	startingOffset==-1 ? 0.125f : startingOffset 
+			), Screen.width * 0.5f, Screen.height * 0.1f);
+	}
+	public static float top(int itemNumber, float itemPlacementY, float itemOffsetY){
+		return Screen.height * (itemPlacementY + itemOffsetY * itemNumber);
+	}
+
 }
