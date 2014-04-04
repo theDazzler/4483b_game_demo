@@ -29,6 +29,9 @@
 			// Use this for initialization
 			void Start () 
 			{
+		GlobalFlags.setScore (0);
+		GlobalFlags.setLives (3);
+		Time.timeScale = 1;
 				StartCoroutine(spawnFood());
 			}
 			
