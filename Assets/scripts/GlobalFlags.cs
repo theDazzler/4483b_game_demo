@@ -61,5 +61,10 @@ public class GlobalFlags : MonoBehaviour {
 	public static float top(int itemNumber, float itemPlacementY, float itemOffsetY){
 		return Screen.height * (itemPlacementY + itemOffsetY * itemNumber);
 	}
-
+	public static GUIStyle menuTitleStyle() {
+		GUIStyle style = new GUIStyle();
+		style.fontSize = 20;
+		style.normal.textColor = Color.white;
+		return style;
+	}
 }
