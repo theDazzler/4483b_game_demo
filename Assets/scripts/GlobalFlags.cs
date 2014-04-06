@@ -65,6 +65,11 @@ public class GlobalFlags : MonoBehaviour {
 		GUIStyle style = new GUIStyle();
 		style.fontSize = 20;
 		style.normal.textColor = Color.white;
+		style.alignment = TextAnchor.MiddleCenter;
 		return style;
+	}
+	public static void drawMenuLabel(string title, Texture logo) {
+		GUI.DrawTexture(new Rect(20.0f,30.0f,75.0f,75.0f), logo);
+		GUI.Label(new Rect(180.0f, 55.0f, 50.0f, 20.0f), title, GlobalFlags.menuTitleStyle());
 	}
 }
