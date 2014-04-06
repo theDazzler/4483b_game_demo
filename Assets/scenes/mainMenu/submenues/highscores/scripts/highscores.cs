@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class highscores : MonoBehaviour {
 
@@ -10,10 +11,17 @@ public class highscores : MonoBehaviour {
 		//display background texture
 		GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), backgroundTexture);
 		MenuUtils.drawMenuLabel("Highscores", logo);
-		
-		//displays our buttons
-		if(GUI.Button(MenuUtils.itemRect(1), "Back to main menu")) {
-			Application.LoadLevel(0);
+		MenuUtils.drawBackToMainMenuButton();
+
+		List<GlobalFlags.Highscore> highscores = GlobalFlags.getHighscores();
+		GlobalFlags.Highscore hs = null;
+
+		int max = highscores.Count > 4 ? 5 : highscores.Count;
+
+		//display the top 5 scores
+		for(int i = 0; i < max; i++) {
+			hs = highscores[i];
+			GUI.Label(MenuUtils.itemRect(i + 1), hs.Name + ": " + hs.Score, MenuUtils.menuItemLabelStyle());
 		}
 	}
 }

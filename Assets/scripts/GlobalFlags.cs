@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GlobalFlags : MonoBehaviour {
 
@@ -67,5 +69,55 @@ public class GlobalFlags : MonoBehaviour {
 	//set the FX volume of the game
 	public static float setSoundFXVolume(float volume) {
 		return soundFXVolume = volume;
+	}
+
+	/** highscores **/
+	public class Highscore
+	{
+		public string Name { get; set; }
+		public int Score { get; set; }
+		public Highscore(string name, int score)
+		{
+			Name = name;
+			Score = score;
+		}
+	}
+
+	//all the recorded highscores of the game
+	private static List<Highscore> highscores = null;
+
+	public static List<Highscore> getHighscores() {
+		highscores = highscores == null ? initHighscores() : highscores;
+		return highscores;
+	}
+
+	public static void addHighscore(string name, int score) {
+		Highscore currentScore = highscore(name);
+
+		if(currentScore != null && currentScore.Score < score) {
+			currentScore.Score = score;
+			highscores = highscores.OrderByDescending(o=>o.Score).ToList(); 
+		} else if(currentScore == null) {
+			highscores.Add(new Highscore(name, score));
+			highscores = highscores.OrderByDescending(o=>o.Score).ToList(); 
+		}
+	}
+
+	private static Highscore highscore(string name) {
+		foreach(Highscore hs in highscores) {
+			if(hs.Name.Equals(name)) return hs;
+		}
+		return null;
+	}
+
+	//initializes highscores with saved highscore data. Just dummy method for now
+	private static List<Highscore> initHighscores() {
+		List<Highscore> hs = new List<Highscore>();
+		hs.Add(new Highscore("Marge", 700));
+		hs.Add(new Highscore("Bob", 300));
+		hs.Add(new Highscore("Cindy", 400));
+		hs.Add(new Highscore("Joe", 500));
+		hs.Add(new Highscore("Eugene", 600));
+		return hs.OrderByDescending(o=>o.Score).ToList();
 	}
 }
