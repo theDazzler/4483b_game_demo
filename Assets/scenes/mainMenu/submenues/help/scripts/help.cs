@@ -9,11 +9,11 @@ public class help : MonoBehaviour {
 	void OnGUI(){
 		//display background texture
 		GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), backgroundTexture);
-		GlobalFlags.drawMenuLabel("Help", logo);
+		MenuUtils.drawMenuLabel("Help", logo);
 
-		GUI.Label(GlobalFlags.itemRect(1), instructions(), GlobalFlags.menuSubtextStyle());
+		GUI.Label(MenuUtils.itemRect(1), instructions(), MenuUtils.menuSubtextStyle());
 		
-		GlobalFlags.drawBackToMainMenuButton();
+		MenuUtils.drawBackToMainMenuButton();
 	}
 
 	private static string instructions(){
