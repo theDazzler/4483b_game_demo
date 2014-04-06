@@ -11,7 +11,7 @@ public class help : MonoBehaviour {
 		GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), backgroundTexture);
 		MenuUtils.drawMenuLabel("Help", logo);
 
-		GUI.Label(MenuUtils.itemRect(1), instructions(), MenuUtils.menuSubtextStyle());
+		GUI.Label(MenuUtils.itemRect(1), instructions(), MenuUtils.menuParagraphStyle());
 		
 		MenuUtils.drawBackToMainMenuButton();
 	}

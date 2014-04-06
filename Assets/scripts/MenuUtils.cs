@@ -29,7 +29,7 @@ public class MenuUtils : MonoBehaviour {
 		return style;
 	}
 
-	public static GUIStyle menuSubtextStyle() {
+	public static GUIStyle menuParagraphStyle() {
 		GUIStyle style = new GUIStyle();
 		style.fontSize = 12;
 		style.normal.textColor = Color.white;
@@ -37,9 +37,18 @@ public class MenuUtils : MonoBehaviour {
 		return style;
 	}
 
+	public static GUIStyle menuItemLabelStyle() {
+		GUIStyle style = new GUIStyle();
+		style.fontSize = 12;
+		style.normal.textColor = Color.white;
+		style.wordWrap = true;
+		style.alignment = TextAnchor.MiddleCenter;
+		return style;
+	}
+
 	public static void drawMenuLabel(string title, Texture logo) {
 		GUI.DrawTexture(new Rect(20.0f,30.0f,75.0f,75.0f), logo);
-		GUI.Label(new Rect(175.0f, 55.0f, 50.0f, 20.0f), title, menuTitleStyle());
+		GUI.Label(new Rect(180.0f, 55.0f, 50.0f, 20.0f), title, menuTitleStyle());
 	}
 
 	public static void drawBackToMainMenuButton() {

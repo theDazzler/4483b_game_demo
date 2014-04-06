@@ -43,4 +43,29 @@ public class GlobalFlags : MonoBehaviour {
 	public static int getLives(){
 		return lives;
 	}
+
+	/** sound **/
+
+	private static float musicVolume = 0.5f;
+	private static float soundFXVolume = 0.5f;
+
+	//returns the current music volume of the game
+	public static float getMusicVolume() {
+		return musicVolume;
+	}
+
+	//set the music volume of the game
+	public static float setMusicVolume(float volume) {
+		return musicVolume = volume;
+	}
+
+	//returns the current FX volume of the game
+	public static float getSoundFXVolume() {
+		return soundFXVolume;
+	}
+	
+	//set the FX volume of the game
+	public static float setSoundFXVolume(float volume) {
+		return soundFXVolume = volume;
+	}
 }
