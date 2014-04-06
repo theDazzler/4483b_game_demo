@@ -13,10 +13,7 @@ public class help : MonoBehaviour {
 
 		GUI.Label(GlobalFlags.itemRect(1), instructions(), GlobalFlags.menuSubtextStyle());
 		
-		//displays our buttons
-		//if(GUI.Button(GlobalFlags.itemRect(1), "Back to main menu")) {
-		//	Application.LoadLevel(0);
-		//}
+		GlobalFlags.drawBackToMainMenuButton();
 	}
 
 	private static string instructions(){

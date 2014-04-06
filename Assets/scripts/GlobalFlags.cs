@@ -79,4 +79,14 @@ public class GlobalFlags : MonoBehaviour {
 		GUI.DrawTexture(new Rect(20.0f,30.0f,75.0f,75.0f), logo);
 		GUI.Label(new Rect(175.0f, 55.0f, 50.0f, 20.0f), title, GlobalFlags.menuTitleStyle());
 	}
+	public static void drawBackToMainMenuButton() {
+		float width = Screen.width * 0.15f;
+		float height = Screen.height * 0.07f;
+		float paddingX = 30.0f;
+		float paddingY = 10.0f;
+
+		if(GUI.Button(new Rect(Screen.width - (width + paddingX), Screen.height - (height + paddingY), width, height), "Back")) {
+			Application.LoadLevel(0);
+		}
+	}
 }
