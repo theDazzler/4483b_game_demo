@@ -5,6 +5,7 @@ public class MainMenu : MonoBehaviour {
 
 	public Texture backgroundTexture;
 	public Texture logo;
+	public Texture facebook;
 
 	void OnGUI(){
 		//display background texture and logo and title
@@ -32,8 +33,17 @@ public class MainMenu : MonoBehaviour {
 			Application.Quit();
 		}
 
-		if(GUI.Button(MenuUtils.itemRect(6), "Facebook")) {
+		if(GUI.Button(facebookButtonRect(), facebook, new GUIStyle())) {
 			Application.LoadLevel(5);
 		}
+	}
+
+	public static Rect facebookButtonRect() {
+		float width = Screen.width * 0.1f;
+		float height = Screen.height * 0.1f;
+		float paddingX = 20.0f;
+		float paddingY = 10.0f;
+		
+		return new Rect(Screen.width - (width + paddingX), Screen.height - (height + paddingY), width, height);
 	}
 }
