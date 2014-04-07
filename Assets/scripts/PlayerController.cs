@@ -17,11 +17,14 @@ public class PlayerController : MonoBehaviour
 	public GUIText liveLabel;
 
 	private float doomTimer = 15;
+	private int lives;
 	
 	// Use this for initialization
 	void Start () 
 	{
+		GlobalFlags.setLives (GlobalFlags.PLAYER_LIVES);
 		scoreLabel.text = "Score: " + GlobalFlags.getScore();
+		Debug.Log ("from player:" + GlobalFlags.getLives ());
 		drawHearts();
 	}
 	

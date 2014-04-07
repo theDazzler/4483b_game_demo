@@ -70,6 +70,7 @@ MonoBehaviour:
   speed: 1
   pointValueCaught: 500
   pointValueMissed: -500
+  deadly: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -91,7 +92,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 407b0175557247d47b057e7eaaad5b93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0be4a06019901046a170b1d6e6428c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
