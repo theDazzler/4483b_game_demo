@@ -5,6 +5,12 @@ public class FoodController : MonoBehaviour
 {
 	public float speed;
 
+	public int pointValueCaught;
+
+	public int pointValueMissed;
+
+	public bool deadly;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -22,5 +28,20 @@ public class FoodController : MonoBehaviour
 
 	}
 
+	public bool isDeadly(){
+		return deadly;
+	}
+
+	public void setDeadly(bool d){
+		deadly = d;
+	}
+
+	public int getValueCaught(){
+		return pointValueCaught;
+	}
+
+	public int getValueMissed(){
+		return pointValueMissed;
+	}
 
 }

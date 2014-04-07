@@ -8,6 +8,9 @@ public class DestroyFoodOnEnter : MonoBehaviour
 	{
 		if (other.tag == "Food")
 		{
+			FoodController f = other.GetComponent<FoodController>();
+			GlobalFlags.incrementScore(f.getValueMissed());
+			//Debug.Log("Score: " + GlobalFlags.getScore());
 			Destroy(other.gameObject);
 		}
 		/*
