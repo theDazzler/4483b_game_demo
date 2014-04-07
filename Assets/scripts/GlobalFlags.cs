@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 public class GlobalFlags : MonoBehaviour {
 
@@ -51,6 +52,8 @@ public class GlobalFlags : MonoBehaviour {
 	
 	private static string MUSIC_VOLUME_KEY = "MUSIC_VOLUME_KEY";
 	private static string SOUNDFX_VOLUME_KEY = "SOUNDFX_VOLUME_KEY";
+	private static string HIGHSCORES_KEY = "HIGHSCORES_KEY";
+	private static string HIGHSCORES_DELIMITER = "|";
 	private static float musicVolume = -1;
 	private static float soundFXVolume = -1;
 
@@ -102,8 +105,13 @@ public class GlobalFlags : MonoBehaviour {
 		return highscores;
 	}
 
+	//creates or updates a user's highscore. Will not change highscore
+	//if the score given is lower than the user's current highscore. Will
+	//create new highscore if untracked user
+	//Persists each change 
 	public static void addHighscore(string name, int score) {
 		Highscore currentScore = highscore(name);
+		bool needToPersist = true;
 
 		if(currentScore != null && currentScore.Score < score) {
 			currentScore.Score = score;
@@ -111,7 +119,19 @@ public class GlobalFlags : MonoBehaviour {
 		} else if(currentScore == null) {
 			highscores.Add(new Highscore(name, score));
 			highscores = highscores.OrderByDescending(o=>o.Score).ToList(); 
+		} else needToPersist = false;
+
+		if(needToPersist) persistHighscores();
+	}
+
+	private static void persistHighscores() {
+		string hsString = "";
+
+		foreach(Highscore hs in highscores) {
+			hsString = string.Concat(hsString, hs.Name + HIGHSCORES_DELIMITER + hs.Score + HIGHSCORES_DELIMITER);
 		}
+
+		PlayerPrefs.SetString(HIGHSCORES_KEY, hsString.Remove(hsString.Length - 1));
 	}
 
 	private static Highscore highscore(string name) {
@@ -123,12 +143,13 @@ public class GlobalFlags : MonoBehaviour {
 
 	//initializes highscores with saved highscore data. Just dummy method for now
 	private static List<Highscore> initHighscores() {
+		string[] hsData = PlayerPrefs.GetString(HIGHSCORES_KEY).Split(HIGHSCORES_DELIMITER.ToCharArray());
 		List<Highscore> hs = new List<Highscore>();
-		hs.Add(new Highscore("Marge", 700));
-		hs.Add(new Highscore("Bob", 300));
-		hs.Add(new Highscore("Cindy", 400));
-		hs.Add(new Highscore("Joe", 500));
-		hs.Add(new Highscore("Eugene", 600));
+
+		for(int i = 0; i < hsData.Length; i += 2) {
+			hs.Add(new Highscore(hsData[i], int.Parse(hsData[i+1])));
+		}
+
 		return hs.OrderByDescending(o=>o.Score).ToList();
 	}
 }
