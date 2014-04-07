@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class GlobalFlags : MonoBehaviour {
+	public const int PLAYER_LIVES = 3;
 
 	private static int score = 0; //the player's score in a single game
-	private static int lives = 3; //the player's lives
+	private static int lives = PLAYER_LIVES; //the player's lives
 
 	//set the players score
 	public static void setScore(int s){
