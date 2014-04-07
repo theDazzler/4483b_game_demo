@@ -23,5 +23,10 @@ public class highscores : MonoBehaviour {
 			hs = highscores[i];
 			GUI.Label(MenuUtils.itemRect(i + 1), hs.Name + ": " + hs.Score, MenuUtils.menuItemLabelStyle());
 		}
+
+		/* for manually adding highscores
+		if(GUI.Button(new Rect(0,0,20,60), "woot")) {
+			GlobalFlags.addHighscore("Ali", 999);
+		}*/
 	}
 }
