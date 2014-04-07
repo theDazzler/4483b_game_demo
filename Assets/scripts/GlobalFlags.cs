@@ -48,27 +48,38 @@ public class GlobalFlags : MonoBehaviour {
 
 	/** sound **/
 
-	private static float musicVolume = 0.5f;
-	private static float soundFXVolume = 0.5f;
+	
+	private static string MUSIC_VOLUME_KEY = "MUSIC_VOLUME_KEY";
+	private static string SOUNDFX_VOLUME_KEY = "SOUNDFX_VOLUME_KEY";
+	private static float musicVolume = -1;
+	private static float soundFXVolume = -1;
 
 	//returns the current music volume of the game
 	public static float getMusicVolume() {
-		return musicVolume;
+		return musicVolume == -1
+			? PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, -1) == -1 ? 0.5f : PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY)
+			: musicVolume
+			;
 	}
 
 	//set the music volume of the game
-	public static float setMusicVolume(float volume) {
-		return musicVolume = volume;
+	public static void setMusicVolume(float volume) {
+		musicVolume = volume;
+		PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicVolume);
 	}
 
 	//returns the current FX volume of the game
 	public static float getSoundFXVolume() {
-		return soundFXVolume;
+		return soundFXVolume == -1
+			? PlayerPrefs.GetFloat(SOUNDFX_VOLUME_KEY, -1) == -1 ? 0.5f : PlayerPrefs.GetFloat(SOUNDFX_VOLUME_KEY)
+			: soundFXVolume
+			;
 	}
 	
 	//set the FX volume of the game
-	public static float setSoundFXVolume(float volume) {
-		return soundFXVolume = volume;
+	public static void setSoundFXVolume(float volume) {
+		soundFXVolume = volume;
+		PlayerPrefs.SetFloat(SOUNDFX_VOLUME_KEY, soundFXVolume);
 	}
 
 	/** highscores **/

@@ -4,8 +4,12 @@ using System.Collections;
 public class options : MonoBehaviour {
 	public Texture backgroundTexture;
 	public Texture logo;
-	float musicVolume = GlobalFlags.getMusicVolume();
-	float soundFXVolume = GlobalFlags.getSoundFXVolume();
+	float musicVolume, soundFXVolume;
+
+	void Start() {
+		musicVolume = GlobalFlags.getMusicVolume();
+		soundFXVolume = GlobalFlags.getSoundFXVolume();
+	}
 	
 	void OnGUI(){
 		//display background texture
