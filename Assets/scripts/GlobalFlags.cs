@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GlobalFlags : MonoBehaviour {
 
@@ -44,27 +46,89 @@ public class GlobalFlags : MonoBehaviour {
 		return lives;
 	}
 
-	//Main Menu utils
-	//itemRect - used to return a positioned rectangle (for a menu button) based on menu item number
-	//use itemRect(itemNumber) for default starting position
-	//use itemRect(int itemNumber, float startingPlacement, float startingOffset) for custom
-	public static Rect itemRect(int itemNumber){
-		return itemRect(itemNumber, -1, -1);
+	/** sound **/
+
+	
+	private static string MUSIC_VOLUME_KEY = "MUSIC_VOLUME_KEY";
+	private static string SOUNDFX_VOLUME_KEY = "SOUNDFX_VOLUME_KEY";
+	private static float musicVolume = -1;
+	private static float soundFXVolume = -1;
+
+	//returns the current music volume of the game
+	public static float getMusicVolume() {
+		return musicVolume == -1
+			? PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, -1) == -1 ? 0.5f : PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY)
+			: musicVolume
+			;
 	}
-	public static Rect itemRect(int itemNumber, float startingPlacement, float startingOffset){
-		return new Rect(Screen.width * 0.25f, top(
-					itemNumber
-				, 	startingPlacement==-1 ? 0.2f : startingPlacement
-				,	startingOffset==-1 ? 0.125f : startingOffset 
-			), Screen.width * 0.5f, Screen.height * 0.1f);
+
+	//set the music volume of the game
+	public static void setMusicVolume(float volume) {
+		musicVolume = volume;
+		PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicVolume);
 	}
-	public static float top(int itemNumber, float itemPlacementY, float itemOffsetY){
-		return Screen.height * (itemPlacementY + itemOffsetY * itemNumber);
+
+	//returns the current FX volume of the game
+	public static float getSoundFXVolume() {
+		return soundFXVolume == -1
+			? PlayerPrefs.GetFloat(SOUNDFX_VOLUME_KEY, -1) == -1 ? 0.5f : PlayerPrefs.GetFloat(SOUNDFX_VOLUME_KEY)
+			: soundFXVolume
+			;
 	}
-	public static GUIStyle menuTitleStyle() {
-		GUIStyle style = new GUIStyle();
-		style.fontSize = 20;
-		style.normal.textColor = Color.white;
-		return style;
+	
+	//set the FX volume of the game
+	public static void setSoundFXVolume(float volume) {
+		soundFXVolume = volume;
+		PlayerPrefs.SetFloat(SOUNDFX_VOLUME_KEY, soundFXVolume);
+	}
+
+	/** highscores **/
+	public class Highscore
+	{
+		public string Name { get; set; }
+		public int Score { get; set; }
+		public Highscore(string name, int score)
+		{
+			Name = name;
+			Score = score;
+		}
+	}
+
+	//all the recorded highscores of the game
+	private static List<Highscore> highscores = null;
+
+	public static List<Highscore> getHighscores() {
+		highscores = highscores == null ? initHighscores() : highscores;
+		return highscores;
+	}
+
+	public static void addHighscore(string name, int score) {
+		Highscore currentScore = highscore(name);
+
+		if(currentScore != null && currentScore.Score < score) {
+			currentScore.Score = score;
+			highscores = highscores.OrderByDescending(o=>o.Score).ToList(); 
+		} else if(currentScore == null) {
+			highscores.Add(new Highscore(name, score));
+			highscores = highscores.OrderByDescending(o=>o.Score).ToList(); 
+		}
+	}
+
+	private static Highscore highscore(string name) {
+		foreach(Highscore hs in highscores) {
+			if(hs.Name.Equals(name)) return hs;
+		}
+		return null;
+	}
+
+	//initializes highscores with saved highscore data. Just dummy method for now
+	private static List<Highscore> initHighscores() {
+		List<Highscore> hs = new List<Highscore>();
+		hs.Add(new Highscore("Marge", 700));
+		hs.Add(new Highscore("Bob", 300));
+		hs.Add(new Highscore("Cindy", 400));
+		hs.Add(new Highscore("Joe", 500));
+		hs.Add(new Highscore("Eugene", 600));
+		return hs.OrderByDescending(o=>o.Score).ToList();
 	}
 }
