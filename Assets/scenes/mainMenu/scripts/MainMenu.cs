@@ -32,5 +32,9 @@ public class MainMenu : MonoBehaviour {
 		if(GUI.Button(MenuUtils.itemRect(5), "Exit")) {
 			Application.Quit();
 		}
+
+		if(GUI.Button(new Rect(0,0,100,30), "delete data")) {
+			PlayerPrefs.DeleteAll();
+		}
 	}	
 }
