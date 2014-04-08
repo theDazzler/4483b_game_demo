@@ -132,6 +132,8 @@ public class GlobalFlags : MonoBehaviour {
 	//create new highscore if untracked user
 	//Persists each change 
 	public static void addHighscore(string name, int score) {
+		highscores = getHighscores();
+
 		Highscore currentScore = highscore(name);
 		bool needToPersist = true;
 
