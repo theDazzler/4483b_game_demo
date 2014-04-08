@@ -153,22 +153,26 @@ public class GameController : MonoBehaviour
 		if (gameOver)
 		{
 			nameMessage = GUI.TextField(buttonRect(2),nameMessage);
-			if (GUI.Button (buttonRect (3), "Submit") & !name.Equals("Player Name: ")){
-				playerName = nameMessage.Substring(13);
-				GlobalFlags.addHighscore(playerName, GlobalFlags.getScore());
-				Application.LoadLevel (3);
-			}
-			if (GUI.Button (buttonRect (4), "High Scores")) {
+			if (GUI.Button (buttonRect (3), "Submit and High Scores")){
+				//check if a name was entered
+				if(!name.Equals("Player Name: ")){
+					//Just use the players name
+					if(nameMessage.Contains("Player Name: ")){
+						playerName = nameMessage.Substring(13);
+					}
+					//The user errased the Player Name: so just use what was typed
+					else{
+						playerName = nameMessage;
+					}
+					GlobalFlags.addHighscore(playerName, GlobalFlags.getScore());
+				}
 				Application.LoadLevel (3);
 			}
 			
-			if (GUI.Button (buttonRect (5), "Exit")) {
+			if (GUI.Button (buttonRect (4), "Exit")) {
 				Application.LoadLevel (0);
-			}	
-		
+			}		
 		}
-
-
 	}
 	
 	Rect buttonRect(int buttonNumber){
