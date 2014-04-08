@@ -14,7 +14,8 @@ public class GameController : MonoBehaviour
 
 	public GUIText messageLabel;
 	public GUIText timerLabel;
-	public string name;
+	public string playerName;
+	public string nameMessage;
 
 	//good foods 
 	public GameObject apple;
@@ -46,7 +47,7 @@ public class GameController : MonoBehaviour
 		Time.timeScale = 1;
 		StartCoroutine(spawnFood());
 
-		name = "Player Name: ";
+		nameMessage = "Player Name: ";
 
 		backgroundMusic.volume = GlobalFlags.getMusicVolume();
 	}
@@ -108,9 +109,10 @@ public class GameController : MonoBehaviour
 
 		if (gameOver)
 		{
-			name = GUI.TextField(buttonRect(2),name);
-			if (GUI.Button (buttonRect (3), "Submit") & !name.Equals("")){
-				GlobalFlags.addHighscore(name, GlobalFlags.getScore());
+			nameMessage = GUI.TextField(buttonRect(2),nameMessage);
+			if (GUI.Button (buttonRect (3), "Submit") & !name.Equals("Player Name: ")){
+				playerName = nameMessage.Substring(13);
+				GlobalFlags.addHighscore(playerName, GlobalFlags.getScore());
 				Application.LoadLevel (3);
 			}
 			if (GUI.Button (buttonRect (4), "High Scores")) {
