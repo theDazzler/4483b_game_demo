@@ -381,6 +381,7 @@ MonoBehaviour:
   friedChicken: {fileID: 100000, guid: 2fe3c35e27fe247ff913dc5d3356511e, type: 2}
   cake: {fileID: 100000, guid: 21cd9c239090b43c9adf1d8e0f22a1a6, type: 2}
   chips: {fileID: 100000, guid: 2ce9d45543f274414957d6fcbe488b7d, type: 2}
+  backgroundMusic: {fileID: 1310025473}
 --- !u!82 &1310025473
 AudioSource:
   m_ObjectHideFlags: 0
