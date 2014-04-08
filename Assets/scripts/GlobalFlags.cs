@@ -9,6 +9,7 @@ public class GlobalFlags : MonoBehaviour {
 
 	private static int score = 0; //the player's score in a single game
 	private static int lives = PLAYER_LIVES; //the player's lives
+	private static float spawnDelay = 2.0f;
 
 	//set the players score
 	public static void setScore(int s){
@@ -41,6 +42,26 @@ public class GlobalFlags : MonoBehaviour {
 		if (lives < 0){
 			lives = 0;
 		}
+	}
+
+	public static float getSpawnDelay()
+	{
+		return spawnDelay;
+	}
+
+	public static void setSpawnDelay(float amount)
+	{
+		spawnDelay = amount;
+	}
+
+	public static void incrementSpawnDelay(float percent)
+	{
+		spawnDelay += (spawnDelay * percent);
+	}
+
+	public static void decrementSpawnDelay(float percent)
+	{
+		spawnDelay -= (spawnDelay * percent);
 	}
 
 	//returns the number of lives

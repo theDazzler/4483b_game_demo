@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour
 		{
 			FoodController f = other.GetComponent<FoodController>();
 			GlobalFlags.incrementScore(f.getValueCaught());
+
+			GlobalFlags.incrementSpawnDelay(f.getReplenishRate());
+
 			//Debug.Log("Score: " + GlobalFlags.getScore());
 			if (f.isDeadly()){
 				loseALife();

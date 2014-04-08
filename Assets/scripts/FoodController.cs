@@ -11,6 +11,8 @@ public class FoodController : MonoBehaviour
 
 	public bool deadly;
 
+	public float replenishRate;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -26,6 +28,11 @@ public class FoodController : MonoBehaviour
 		Vector2 verticalMovement = new Vector2 (0.0f, -speed);
 		rigidbody2D.velocity = verticalMovement;
 
+	}
+
+	public float getReplenishRate()
+	{
+		return replenishRate;
 	}
 
 	public bool isDeadly(){

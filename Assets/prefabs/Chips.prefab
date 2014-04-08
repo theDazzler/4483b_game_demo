@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
-  - 58: {fileID: 5800000}
   - 114: {fileID: 11400000}
+  - 60: {fileID: 6000000}
   m_Layer: 0
   m_Name: Chips
   m_TagString: Food
@@ -45,8 +45,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!58 &5800000
-CircleCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,24 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .319999993
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: .209999993, y: .48999998}
+      - {x: -.0799999982, y: .48999998}
+      - {x: -.319999993, y: .449999988}
+      - {x: -.359999985, y: .359999985}
+      - {x: -.359999985, y: .229999989}
+      - {x: -.329999983, y: .199999988}
+      - {x: -.319999993, y: .170000002}
+      - {x: -.299999982, y: .099999994}
+      - {x: -.280000001, y: .0399999991}
+      - {x: -.25, y: -.229999989}
+      - {x: -.179999992, y: -.289999992}
+      - {x: -.0199999996, y: -.299999982}
+      - {x: .25, y: -.299999982}
+      - {x: .359999985, y: -.269999981}
+      - {x: .439999998, y: -.149999991}
+      - {x: .439999998, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,6 +87,7 @@ MonoBehaviour:
   pointValueCaught: -250
   pointValueMissed: 0
   deadly: 0
+  replenishRate: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -83,7 +100,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

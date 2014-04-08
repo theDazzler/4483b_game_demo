@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour
 	public Vector2 spawnRangeY;
 	public GameObject food;
 	public int foodCount;
-	public float spawnDelay;
 	public float levelWait;
 	public bool isPaused = false;
 	public GUISkin pauseBack;
@@ -36,8 +35,11 @@ public class GameController : MonoBehaviour
 	public GameObject cake;
 	public GameObject chips;
 
-	private bool gameOver;
+	public float timePassed;
 
+	private bool gameOver;
+	private float spawnIncreaseRate = .03f;//percentage spawn rate increase
+	private float increaseSpawnRateTimer = 4.5f; //increase spawn rate every 5 seconds 
 	private float lethalFoodChangeTimer = LETHAL_FOOD_CHANGE_TIMER;
 
 
@@ -49,6 +51,8 @@ public class GameController : MonoBehaviour
 		gameOver = false;
 
 		this.messageLabel.enabled = false;
+
+		timePassed = 0;
 
 		lethalFoods = new List<GameObject> ();
 
@@ -67,7 +71,7 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log (lethalFoodChangeTimer);
+		Debug.Log (GlobalFlags.getSpawnDelay());
 
 		if (Input.GetKeyDown ("space") || Input.GetKeyDown ("p")) {
 			isPaused = !isPaused;
@@ -82,12 +86,23 @@ public class GameController : MonoBehaviour
 		}
 
 		lethalFoodChangeTimer -= Time.deltaTime;
+		timePassed += Time.deltaTime;
+
+		//increases spawn rate as time goes on (every 10 sec)
+		if (timePassed > increaseSpawnRateTimer) 
+		{
+			GlobalFlags.decrementSpawnDelay(spawnIncreaseRate);
+			timePassed = 0;
+		}
+		///////////////////////////////////////
+
 		if(lethalFoodChangeTimer < 0)
 		{
 			setLethalFood();
 			lethalFoodChangeTimer = LETHAL_FOOD_CHANGE_TIMER;
 			
 		}
+
 
 		if (GlobalFlags.getLives() == 0) 
 		{
@@ -165,6 +180,15 @@ public class GameController : MonoBehaviour
 
 	void setLethalFood()
 	{
+		GameObject[] foodObjects = GameObject.FindGameObjectsWithTag("Food");
+		for(int i = 0; i < foodObjects.Length; i++)
+		{
+			GameObject tempFood = foodObjects[i];
+			FoodController f = tempFood.GetComponent<FoodController>();
+			f.setDeadly(false);
+
+		}
+
 		if (this.currentLethalFood != null) 
 		{
 			FoodController f = this.currentLethalFood.GetComponent<FoodController>();
@@ -237,11 +261,11 @@ IEnumerator spawnFood()
 		else{
 			Instantiate(apple, spawnPosition, spawnRotation);
 		}
-		spawnDelay -= 0.01f;
-		if (spawnDelay < 0.1f ){
-			spawnDelay = 0.1f ;
+
+		if (GlobalFlags.getSpawnDelay() < 0.1f ){
+			GlobalFlags.setSpawnDelay(0.1f) ;
 		}
-		yield return new WaitForSeconds(spawnDelay);
+		yield return new WaitForSeconds(GlobalFlags.getSpawnDelay());
 		}
 	}
 }
