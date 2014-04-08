@@ -71,6 +71,7 @@ MonoBehaviour:
   pointValueCaught: 100
   pointValueMissed: -50
   deadly: 0
+  replenishRate: .00999999978
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

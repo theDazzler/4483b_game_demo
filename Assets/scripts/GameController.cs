@@ -1,13 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour 
 {
+	private const float LETHAL_FOOD_CHANGE_TIMER = 20;
+
 	public Vector2 spawnRangeX;
 	public Vector2 spawnRangeY;
 	public GameObject food;
 	public int foodCount;
-	public float spawnDelay;
 	public float levelWait;
 	public bool isPaused = false;
 	public GUISkin pauseBack;
@@ -16,6 +18,11 @@ public class GameController : MonoBehaviour
 	public GUIText timerLabel;
 	public string playerName;
 	public string nameMessage;
+
+	public GUITexture lethalFoodTexture;
+
+	private List<GameObject> lethalFoods;
+	private GameObject currentLethalFood;
 
 	//good foods 
 	public GameObject apple;
@@ -30,7 +37,12 @@ public class GameController : MonoBehaviour
 	public GameObject cake;
 	public GameObject chips;
 
+	public float timePassed;
+
 	private bool gameOver;
+	private float spawnIncreaseRate = .03f;//percentage spawn rate increase
+	private float increaseSpawnRateTimer = 4.5f; //increase spawn rate every 5 seconds 
+	private float lethalFoodChangeTimer = LETHAL_FOOD_CHANGE_TIMER;
 
 	public AudioSource backgroundMusic;
 
@@ -42,7 +54,18 @@ public class GameController : MonoBehaviour
 		gameOver = false;
 
 		this.messageLabel.enabled = false;
-		Debug.Log ("from game:" + GlobalFlags.getLives ());
+
+		timePassed = 0;
+
+		lethalFoods = new List<GameObject> ();
+
+		lethalFoods.Add (cottonCandy);
+		lethalFoods.Add (donut);
+		lethalFoods.Add (friedChicken);
+		lethalFoods.Add (cake);
+		lethalFoods.Add (chips);
+
+		setLethalFood ();
 
 		Time.timeScale = 1;
 		StartCoroutine(spawnFood());
@@ -55,6 +78,7 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		Debug.Log (GlobalFlags.getSpawnDelay());
 
 		if (Input.GetKeyDown ("space") || Input.GetKeyDown ("p")) {
 			isPaused = !isPaused;
@@ -67,6 +91,25 @@ public class GameController : MonoBehaviour
 
 			}
 		}
+
+		lethalFoodChangeTimer -= Time.deltaTime;
+		timePassed += Time.deltaTime;
+
+		//increases spawn rate as time goes on (every 10 sec)
+		if (timePassed > increaseSpawnRateTimer) 
+		{
+			GlobalFlags.decrementSpawnDelay(spawnIncreaseRate);
+			timePassed = 0;
+		}
+		///////////////////////////////////////
+
+		if(lethalFoodChangeTimer < 0)
+		{
+			setLethalFood();
+			lethalFoodChangeTimer = LETHAL_FOOD_CHANGE_TIMER;
+			
+		}
+
 
 		if (GlobalFlags.getLives() == 0) 
 		{
@@ -139,6 +182,35 @@ public class GameController : MonoBehaviour
 		return Screen.height * (buttonPlacementY + buttonOffsetY * buttonNumber);
 	}
 
+	void setLethalFood()
+	{
+		GameObject[] foodObjects = GameObject.FindGameObjectsWithTag("Food");
+		for(int i = 0; i < foodObjects.Length; i++)
+		{
+			GameObject tempFood = foodObjects[i];
+			FoodController f = tempFood.GetComponent<FoodController>();
+			f.setDeadly(false);
+
+		}
+
+		if (this.currentLethalFood != null) 
+		{
+			FoodController f = this.currentLethalFood.GetComponent<FoodController>();
+
+			f.setDeadly (false);
+		}
+
+		int foodIndex = UnityEngine.Random.Range(0, this.lethalFoods.Count);
+		this.currentLethalFood = this.lethalFoods [foodIndex];
+		Texture lethalTexture = this.currentLethalFood.GetComponent<SpriteRenderer> ().sprite.texture;
+
+		lethalFoodTexture.texture = lethalTexture;
+
+		FoodController foodCont = this.currentLethalFood.GetComponent<FoodController>();
+		foodCont.setDeadly (true);
+
+	}
+
 	//spawn food using timer
 //spawn food using timer
 IEnumerator spawnFood()
@@ -193,11 +265,11 @@ IEnumerator spawnFood()
 		else{
 			Instantiate(apple, spawnPosition, spawnRotation);
 		}
-		spawnDelay -= 0.01f;
-		if (spawnDelay < 0.1f ){
-			spawnDelay = 0.1f ;
+
+		if (GlobalFlags.getSpawnDelay() < 0.1f ){
+			GlobalFlags.setSpawnDelay(0.1f) ;
 		}
-		yield return new WaitForSeconds(spawnDelay);
+		yield return new WaitForSeconds(GlobalFlags.getSpawnDelay());
 		}
 	}
 }

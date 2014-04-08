@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
-  - 58: {fileID: 5800000}
   - 114: {fileID: 11400000}
+  - 60: {fileID: 6000000}
   m_Layer: 0
   m_Name: Water
   m_TagString: Food
@@ -45,8 +45,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!58 &5800000
-CircleCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,21 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .319999993
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: .280000001, y: .319999993}
+      - {x: .280000001, y: .349999994}
+      - {x: .25999999, y: .359999985}
+      - {x: -.289999992, y: .359999985}
+      - {x: -.310000002, y: .349999994}
+      - {x: -.310000002, y: .319999993}
+      - {x: -.179999992, y: -.399999976}
+      - {x: -.159999996, y: -.409999996}
+      - {x: -.099999994, y: -.419999987}
+      - {x: .129999995, y: -.419999987}
+      - {x: .179999992, y: -.399999976}
+      - {x: .189999998, y: -.340000004}
+      - {x: .269999981, y: .25}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,6 +84,7 @@ MonoBehaviour:
   pointValueCaught: 200
   pointValueMissed: -200
   deadly: 0
+  replenishRate: .0149999997
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
