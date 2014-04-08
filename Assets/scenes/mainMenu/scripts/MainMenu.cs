@@ -33,17 +33,8 @@ public class MainMenu : MonoBehaviour {
 			Application.Quit();
 		}
 
-		if(GUI.Button(facebookButtonRect(), facebook, new GUIStyle())) {
-			Application.LoadLevel(5);
+		if(GUI.Button(new Rect(0,0,100,30), "delete data")) {
+			PlayerPrefs.DeleteAll();
 		}
-	}
-
-	public static Rect facebookButtonRect() {
-		float width = Screen.width * 0.1f;
-		float height = Screen.height * 0.1f;
-		float paddingX = 20.0f;
-		float paddingY = 10.0f;
-		
-		return new Rect(Screen.width - (width + paddingX), Screen.height - (height + paddingY), width, height);
-	}
+	}	
 }

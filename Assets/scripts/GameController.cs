@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
 
 	private bool gameOver;
 
+	public AudioSource backgroundMusic;
 
 	// Use this for initialization
 	void Start () 
@@ -44,7 +45,10 @@ public class GameController : MonoBehaviour
 
 		Time.timeScale = 1;
 		StartCoroutine(spawnFood());
+
 		name = "Player Name: ";
+
+		backgroundMusic.volume = GlobalFlags.getMusicVolume();
 	}
 	
 	// Update is called once per frame

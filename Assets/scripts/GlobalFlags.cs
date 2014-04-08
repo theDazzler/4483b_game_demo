@@ -146,6 +146,7 @@ public class GlobalFlags : MonoBehaviour {
 	private static List<Highscore> initHighscores() {
 		string[] hsData = PlayerPrefs.GetString(HIGHSCORES_KEY).Split(HIGHSCORES_DELIMITER.ToCharArray());
 		List<Highscore> hs = new List<Highscore>();
+		if(hsData.Length == 1) return hs;
 
 		for(int i = 0; i < hsData.Length; i += 2) {
 			hs.Add(new Highscore(hsData[i], int.Parse(hsData[i+1])));

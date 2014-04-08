@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
 	public GUIText scoreLabel;
 	public GUIText liveLabel;
 
+	public AudioSource soundGood;
+	public AudioSource soundBad;
+
 	private float doomTimer = 15;
 	private int lives;
 	
@@ -26,6 +29,8 @@ public class PlayerController : MonoBehaviour
 		scoreLabel.text = "Score: " + GlobalFlags.getScore();
 		Debug.Log ("from player:" + GlobalFlags.getLives ());
 		drawHearts();
+		soundBad.volume = GlobalFlags.getSoundFXVolume();
+		soundGood.volume = GlobalFlags.getSoundFXVolume();
 	}
 	
 	// Update is called once per frame
@@ -61,7 +66,13 @@ public class PlayerController : MonoBehaviour
 		if (other.tag == "Food")
 		{
 			FoodController f = other.GetComponent<FoodController>();
-			GlobalFlags.incrementScore(f.getValueCaught());
+
+			int value = f.getValueCaught();
+			GlobalFlags.incrementScore(value);
+
+			if(value < 0) soundBad.Play();
+			else soundGood.Play();
+
 			//Debug.Log("Score: " + GlobalFlags.getScore());
 			if (f.isDeadly()){
 				loseALife();
