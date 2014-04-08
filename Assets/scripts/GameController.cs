@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
 
 	public GUIText messageLabel;
 	public GUIText timerLabel;
+	public string name;
 
 	//good foods 
 	public GameObject apple;
@@ -43,6 +44,7 @@ public class GameController : MonoBehaviour
 
 		Time.timeScale = 1;
 		StartCoroutine(spawnFood());
+		name = "Player Name: ";
 	}
 	
 	// Update is called once per frame
@@ -64,7 +66,9 @@ public class GameController : MonoBehaviour
 		if (GlobalFlags.getLives() == 0) 
 		{
 			//player loses
-			messageLabel.text = "Game Over";
+			messageLabel.text = "Game Over\n";
+			messageLabel.anchor = TextAnchor.LowerCenter;
+			messageLabel.alignment = TextAlignment.Center;
 			messageLabel.enabled = true;
 			Time.timeScale = 0;
 			gameOver = true;
@@ -88,19 +92,8 @@ public class GameController : MonoBehaviour
 							isPaused = !isPaused;
 							Time.timeScale = 1;
 						}
-						if (GUI.Button (buttonRect (2), "Options")) {
-								Application.LoadLevel (2);
-						}
 		
-						if (GUI.Button (buttonRect (3), "High Scores")) {
-								Application.LoadLevel (3);
-						}
-		
-						if (GUI.Button (buttonRect (4), "Help")) {
-								Application.LoadLevel (4);
-						}
-		
-						if (GUI.Button (buttonRect (5), "Exit")) {
+						if (GUI.Button (buttonRect (2), "Exit")) {
 								Application.LoadLevel (0);
 						}
 		
@@ -109,8 +102,13 @@ public class GameController : MonoBehaviour
 
 
 
-		if (gameOver) 
+		if (gameOver)
 		{
+			name = GUI.TextField(buttonRect(2),name);
+			if (GUI.Button (buttonRect (3), "Submit") & !name.Equals("")){
+				GlobalFlags.addHighscore(name, GlobalFlags.getScore());
+				Application.LoadLevel (3);
+			}
 			if (GUI.Button (buttonRect (4), "High Scores")) {
 				Application.LoadLevel (3);
 			}
