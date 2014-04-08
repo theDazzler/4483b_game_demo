@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour 
 {
+	private const float LETHAL_FOOD_CHANGE_TIMER = 20;
+
 	public Vector2 spawnRangeX;
 	public Vector2 spawnRangeY;
 	public GameObject food;
@@ -14,6 +17,11 @@ public class GameController : MonoBehaviour
 
 	public GUIText messageLabel;
 	public GUIText timerLabel;
+
+	public GUITexture lethalFoodTexture;
+
+	private List<GameObject> lethalFoods;
+	private GameObject currentLethalFood;
 
 	//good foods 
 	public GameObject apple;
@@ -30,6 +38,8 @@ public class GameController : MonoBehaviour
 
 	private bool gameOver;
 
+	private float lethalFoodChangeTimer = LETHAL_FOOD_CHANGE_TIMER;
+
 
 	// Use this for initialization
 	void Start () 
@@ -39,7 +49,16 @@ public class GameController : MonoBehaviour
 		gameOver = false;
 
 		this.messageLabel.enabled = false;
-		Debug.Log ("from game:" + GlobalFlags.getLives ());
+
+		lethalFoods = new List<GameObject> ();
+
+		lethalFoods.Add (cottonCandy);
+		lethalFoods.Add (donut);
+		lethalFoods.Add (friedChicken);
+		lethalFoods.Add (cake);
+		lethalFoods.Add (chips);
+
+		setLethalFood ();
 
 		Time.timeScale = 1;
 		StartCoroutine(spawnFood());
@@ -48,6 +67,7 @@ public class GameController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		Debug.Log (lethalFoodChangeTimer);
 
 		if (Input.GetKeyDown ("space") || Input.GetKeyDown ("p")) {
 			isPaused = !isPaused;
@@ -59,6 +79,14 @@ public class GameController : MonoBehaviour
 				Time.timeScale = 1;
 
 			}
+		}
+
+		lethalFoodChangeTimer -= Time.deltaTime;
+		if(lethalFoodChangeTimer < 0)
+		{
+			setLethalFood();
+			lethalFoodChangeTimer = LETHAL_FOOD_CHANGE_TIMER;
+			
 		}
 
 		if (GlobalFlags.getLives() == 0) 
@@ -133,6 +161,26 @@ public class GameController : MonoBehaviour
 		float buttonOffsetY = 0.125f;
 		
 		return Screen.height * (buttonPlacementY + buttonOffsetY * buttonNumber);
+	}
+
+	void setLethalFood()
+	{
+		if (this.currentLethalFood != null) 
+		{
+			FoodController f = this.currentLethalFood.GetComponent<FoodController>();
+
+			f.setDeadly (false);
+		}
+
+		int foodIndex = UnityEngine.Random.Range(0, this.lethalFoods.Count);
+		this.currentLethalFood = this.lethalFoods [foodIndex];
+		Texture lethalTexture = this.currentLethalFood.GetComponent<SpriteRenderer> ().sprite.texture;
+
+		lethalFoodTexture.texture = lethalTexture;
+
+		FoodController foodCont = this.currentLethalFood.GetComponent<FoodController>();
+		foodCont.setDeadly (true);
+
 	}
 
 	//spawn food using timer

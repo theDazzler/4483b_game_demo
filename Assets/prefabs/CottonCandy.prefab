@@ -70,7 +70,7 @@ MonoBehaviour:
   speed: 1
   pointValueCaught: -750
   pointValueMissed: 0
-  deadly: 1
+  deadly: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

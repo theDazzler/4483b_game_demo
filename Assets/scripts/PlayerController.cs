@@ -2,6 +2,9 @@
 using System.Collections;
 
 //Constrict player's movement to edge of screen
+using System.Collections.Generic;
+
+
 [System.Serializable]
 public class LevelBounds
 {
@@ -18,14 +21,15 @@ public class PlayerController : MonoBehaviour
 
 	private float doomTimer = 15;
 	private int lives;
-	
+		
 	// Use this for initialization
 	void Start () 
 	{
 		GlobalFlags.setLives (GlobalFlags.PLAYER_LIVES);
 		scoreLabel.text = "Score: " + GlobalFlags.getScore();
-		Debug.Log ("from player:" + GlobalFlags.getLives ());
+
 		drawHearts();
+
 	}
 	
 	// Update is called once per frame
@@ -41,6 +45,8 @@ public class PlayerController : MonoBehaviour
 		else {
 			doomTimer = 15;
 		}
+
+
 	}
 
 	//physics
@@ -74,6 +80,7 @@ public class PlayerController : MonoBehaviour
 			Destroy(gameObject);
 		}*/
 	}
+
 
 	void drawHearts(){
 		liveLabel.text = "";
