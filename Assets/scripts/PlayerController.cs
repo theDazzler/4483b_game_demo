@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 			doomTimer -= Time.deltaTime;
 			if (doomTimer < 0){
 				loseALife();
+				GlobalFlags.setScore(0);
 			}
 		}
 		else {
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
 	void loseALife(){
 		GlobalFlags.loseLife();
-		GlobalFlags.setScore(0);
+		//GlobalFlags.setScore(0);
 		doomTimer = 15;
 		drawHearts();
 	}
