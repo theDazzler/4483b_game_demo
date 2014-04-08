@@ -33,8 +33,8 @@ public class MainMenu : MonoBehaviour {
 			Application.Quit();
 		}
 
-		if(GUI.Button(new Rect(0,0,100,30), "delete data")) {
+		/*if(GUI.Button(new Rect(0,0,100,30), "delete data")) {
 			PlayerPrefs.DeleteAll();
-		}
+		}*/
 	}	
 }
